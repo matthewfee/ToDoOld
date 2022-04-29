@@ -1,17 +1,60 @@
 import React, { useState } from 'react'
+import { Button, Container } from 'react-bootstrap'
+import { IState as Props } from '../App'
 
-type Props = {
-  setToDoItems: React.Dispatch<React.SetStateAction<object[]>>
+interface IProps {
+  toDoItems: Props['toDoItems']
+  setToDoItems: Props['setToDoItems']
 }
 
-const [name, setName] = useState<string>('ToDo Name')
-const [description, setDescription] = useState<string>('Describe the item here')
+function AddToDo({ toDoItems, setToDoItems }: IProps) {
+  const [name, setName] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
 
-function AddToDo({}: Props) {
+  const handleName = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setName(e.target.value)
+  }
+
+  const handleDescription = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setDescription(e.target.value)
+  }
+
+  const addItem = (): void => {
+    let arr = [...toDoItems]
+    arr.push({ name, description, checked: false })
+    setToDoItems(arr)
+    setName('')
+    setDescription('')
+  }
+
   return (
-    <div>
+    <Container>
       <h2>Add New To Do</h2>
-    </div>
+      <div className='input-group'>
+        <input
+          type='text'
+          className='form-control'
+          value={name}
+          onChange={handleName}
+          placeholder={'Name'}
+        ></input>
+        <input
+          type='text'
+          className='form-control'
+          value={description}
+          onChange={handleDescription}
+          placeholder={'Description'}
+        ></input>
+
+        <Button
+          variant='outline-secondary'
+          id='button-addon2'
+          onClick={addItem}
+        >
+          Add Item
+        </Button>
+      </div>
+    </Container>
   )
 }
 
