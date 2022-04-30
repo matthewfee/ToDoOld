@@ -27,15 +27,16 @@ const ToDoList = (props: IProps) => {
   }
 
   return (
-    <Table striped bordered hover className={`mt-5`}>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Status</th>
+    <Table striped bordered hover className={`mt-5 border-3 table-responsive`}>
+      <thead className='border-0'>
+        <tr className='text-center bg-white text-black border-0 fst-italic'>
+          <th className='border-0 fw-normal'>Name</th>
+          <th className='border-0 fw-normal '>Description</th>
+          <th className='border-0 fw-normal '>Status</th>
+          <th className='border-0 fw-normal '>Delete</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className='align-middle'>
         {toDoItems.map((item, index) => {
           return (
             <ToDoItem

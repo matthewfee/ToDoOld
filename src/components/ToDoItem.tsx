@@ -18,13 +18,13 @@ const ToDoItem = ({
   deleteItem,
   handleCheck
 }: ToDoItemProps) => {
-  const checkStyling = checked ? 'text-white bg-secondary' : ''
+  const checkStyling = checked ? 'table-success' : ''
 
   return (
-    <tr className={checkStyling}>
-      <td className={checkStyling}>{name}</td>
+    <tr className={`${checkStyling} text-center text-wrap bg-white`}>
+      <td className={`${checkStyling} fw-bold text-capitalize`}>{name}</td>
       <td className={checkStyling}>{description}</td>
-      <td className={checkStyling}>
+      <td className={`${checkStyling}`}>
         <input
           className={`form-check-input`}
           type='checkbox'
@@ -33,9 +33,14 @@ const ToDoItem = ({
           onChange={handleCheck}
           checked={checked}
         ></input>
-        <Button className={'m-4'} value={value} onClick={deleteItem}>
-          Delete
-        </Button>
+      </td>
+      <td className={`${checkStyling}`}>
+        <Button
+          className={'btn-close btn-block'}
+          value={value}
+          onClick={deleteItem}
+          aria-label='Close'
+        ></Button>
       </td>
     </tr>
   )

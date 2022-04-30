@@ -20,17 +20,25 @@ function AddToDo({ toDoItems, setToDoItems }: IProps) {
   }
 
   const addItem = (): void => {
+    // no empty todos
+
+    if (name === '' && description === '') {
+      return
+    }
+
     let arr = [...toDoItems]
     arr.push({ name, description, checked: false })
     setToDoItems(arr)
+
+    // reset values to empty
     setName('')
     setDescription('')
   }
 
   return (
-    <Container>
-      <h2>Add New To Do</h2>
-      <div className='input-group'>
+    <Container className='container-fluid p-0 container-sm mt-5'>
+      <h2>My To Dos...</h2>
+      <div className='input-group mt-5'>
         <input
           type='text'
           className='form-control'
